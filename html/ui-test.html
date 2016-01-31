@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title></title>
+    <link rel="stylesheet" href="../css/weui.min.css" />
+</head>
+<body>
+    <a class="weui_btn weui_btn_primary" href="javascript:;" onclick="uiAlert()">alert</a>
+    <a class="weui_btn weui_btn_primary" href="javascript:;" onclick="uiConfirm()">confirm</a>
+    <a class="weui_btn weui_btn_primary" href="javascript:;" onclick="toast()">toast</a>
+    <a class="weui_btn weui_btn_primary" href="javascript:;" onclick="loading()">loading</a>
+    <a class="weui_btn weui_btn_primary" href="javascript:;" onclick="actionsheet()">actionsheet</a>
+
+    <script src="../js/zepto.min.js"></script>
+    <script src="../js/ui.js"></script>
+    <script>
+        function uiAlert(){
+            $.ui.alert('prompt', 'this is alert');
+        }
+
+        function uiConfirm(){
+            $.ui.confirm('prompt', 'this is confirm', function(){
+               $.ui.toast("你选择的是确定");
+            }, function(){
+               $.ui.toast("你选择的是取消");
+            });
+        }
+        
+        function toast() {
+            $.ui.toast('this is toast');
+        }
+
+        function loading(){
+            $.ui.loadingShow();
+            alert('模拟请求');
+            $.ui.loadingHide();
+        }
+
+        function actionsheet() {
+            var data = [];
+            data.push({id:1, name:"test1"});
+            data.push({id:2, name:"test2"});
+            data.push({id:3, name:"test3"});
+            data.push({id:4, name:"test4"});
+            data.push({id:5, name:"test5"});
+            $.ui.actionsheet(data, function(id, name){
+                console.log([id, name]);
+            });
+        }
+    </script>
+</body>
+</html>
