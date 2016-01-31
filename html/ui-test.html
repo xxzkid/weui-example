@@ -12,6 +12,7 @@
     <a class="weui_btn weui_btn_primary" href="javascript:;" onclick="toast()">toast</a>
     <a class="weui_btn weui_btn_primary" href="javascript:;" onclick="loading()">loading</a>
     <a class="weui_btn weui_btn_primary" href="javascript:;" onclick="actionsheet()">actionsheet</a>
+    <a class="weui_btn weui_btn_primary" href="javascript:;" onclick="tip()">tip</a>
 
     <script src="../js/zepto.min.js"></script>
     <script src="../js/ui.js"></script>
@@ -48,6 +49,10 @@
             $.ui.actionsheet(data, function(id, name){
                 console.log([id, name]);
             });
+        }
+        
+        function tip() {
+            $.ui.tip("格式不正确");
         }
     </script>
 </body>

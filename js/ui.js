@@ -6,7 +6,8 @@
         'toast' : toast,
         'loadingShow' : loadingShow,
         'loadingHide' : loadingHide,
-        'actionsheet' : actionsheet
+        'actionsheet' : actionsheet,
+        'tip' : tip
     };
     
     var confirmTpl = ''
@@ -118,7 +119,7 @@
             ).appendTo( $('body') );
         
         setTimeout( function(){
-            dialogRemove(toast);
+            toast.remove();
         }, $.trim(second) == '' ? 2000 : parseInt(second) * 1000 );
         
     }
@@ -157,7 +158,7 @@
         $('#weui_actionsheet .weui_actionsheet_menu .weui_actionsheet_cell').on('click', function(){
             var id = $(this).attr('data-id');
             var name = $(this).text();
-            itemClick(id, name);
+            if (typeof itemClick === 'function' ) itemClick(id, name);
             hideActionSheet(actionsheet, weuiActionsheet, mask);
         });
         
@@ -175,6 +176,15 @@
                 actionsheet.remove();
             }, 100);
         };
+    }
+
+    function tip(content, second) {
+        var tip = $(
+            '<div class="weui_toptips weui_warn js_tooltips" style="display: none;">${content}</div>'.replace(/\${content}/g, content)
+            ).appendTo($('body')).show();
+        setTimeout(function(){
+            tip.remove();
+        }, $.trim(second) == '' ? 2000 : parseInt(second) * 1000);
     }
     
     // 阴影层
